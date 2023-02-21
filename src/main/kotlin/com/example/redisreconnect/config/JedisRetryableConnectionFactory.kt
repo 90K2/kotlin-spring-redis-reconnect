@@ -19,6 +19,10 @@ class RetryableJedisConnectionFactory(
         standaloneConfig: RedisStandaloneConfiguration
 ) : JedisConnectionFactory(standaloneConfig) {
 
+    init {
+        super.afterPropertiesSet()
+    }
+
     private val CONNECTION_RETRY_BACKOFF_INITIAL_INTERVAL: Duration = Duration.ofMillis(200)
 
     private val CONNECTION_RETRY_BACKOFF_MAX_INTERVAL: Duration = Duration.ofSeconds(3)
